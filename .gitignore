@@ -1,9 +1,6 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs/Algorithm.Logic/v15
-/Algorithm.Logic.Tests/bin/Debug
-/bin/Debug
-/obj/Debug
-/Algorithm.Logic.Tests/obj/Debug
+﻿.vs
+bin/
+obj/
+Debug/
+*.cache
+*.suo

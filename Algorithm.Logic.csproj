@@ -46,6 +46,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Algorithm.Logic.CommandProcessor\Algorithm.Logic.CommandProcessor.csproj">
+      <Project>{17b4819e-6cf8-42f2-a078-0402200e6464}</Project>
+      <Name>Algorithm.Logic.CommandProcessor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
