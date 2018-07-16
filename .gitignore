@@ -4,3 +4,6 @@ obj/
 Debug/
 *.cache
 *.suo
+nuget.exe
+tools/
+packages/

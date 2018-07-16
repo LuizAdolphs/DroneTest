@@ -1,0 +1,12 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: fEgQRTsxv8Dk00YOBeHOpNqB3K78yMcg8LipYCrCcR6MFslzHvmMbswn3dmJ4JCN
+before_build:
+- cmd: nuget restore
+build:
+  project: Algorithm.Logic.sln
+  verbosity: minimal
+after_test:
+- cmd: .after_test.cmd
