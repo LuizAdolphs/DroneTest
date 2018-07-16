@@ -1,4 +1,4 @@
-# DroneTest [![Build status](https://ci.appveyor.com/api/projects/status/9jyhov2wx3o5e68v?svg=true)](https://ci.appveyor.com/project/LuizAdolphs/dronetest)
+# DroneTest [![Build status](https://ci.appveyor.com/api/projects/status/9jyhov2wx3o5e68v?svg=true)](https://ci.appveyor.com/project/LuizAdolphs/dronetest) [![Coverage Status](https://coveralls.io/repos/github/LuizAdolphs/DroneTest/badge.svg?branch=master)](https://coveralls.io/github/LuizAdolphs/DroneTest?branch=master)
 
 The purpose of this software is to interpret a string command and transform into a X, Y position following a set of rules. 
 
