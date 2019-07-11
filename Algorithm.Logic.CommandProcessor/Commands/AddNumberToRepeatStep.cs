@@ -14,7 +14,7 @@
             {
                 stepCollection.AddNumberToLatestStepRepeat(stepCollection.CharAtIndex);
 
-                if (stepCollection.LastStep().Repeat >= 2147483647 && !stepCollection.Command[stepCollection.Index + 1].Equals('X'))
+                if (stepCollection.LastStep().Times >= 2147483647 && !stepCollection.Command[stepCollection.Index + 1].Equals('X'))
                     currentStep = CommandsStep.InvalidEntrance;
                 else
                     currentStep = CommandsStep.IncreaseIndex;

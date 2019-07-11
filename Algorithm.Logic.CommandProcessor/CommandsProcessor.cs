@@ -4,9 +4,9 @@
     using Algorithm.Logic.CommandProcessor.Models;
     using System.Collections.Generic;
 
-    public class CommandsProcessor
+    public static class CommandsProcessor
     {
-        private Dictionary<CommandsStep, ICommandStep> _commandSteps = new Dictionary<CommandsStep, ICommandStep>
+        private static readonly Dictionary<CommandsStep, ICommandStep> _commandSteps = new Dictionary<CommandsStep, ICommandStep>
             {
                 { CommandsStep.Start, new VerifyIfIsEmptyCommandStep() },
                 { CommandsStep.VerifyStep, new VerifyNextStepInCommandStep() },
@@ -17,16 +17,9 @@
                 { CommandsStep.InvalidEntrance, new InvalidEntranceStep() }
             };
 
-        private string _command = string.Empty;
-
-        public CommandsProcessor(string command)
+        public static string Process(string command)
         {
-            this._command = command;
-        }
-
-        public string Process()
-        {
-            var stepCollection = new StepCollection(this._command);
+            var stepCollection = new StepCollection(command);
             var step = CommandsStep.Start;
 
             do

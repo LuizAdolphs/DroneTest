@@ -37,9 +37,7 @@ namespace Algorithm.Logic
         /// <returns>String representando o ponto cartesiano após a execução dos comandos (X, Y)</returns>
         public static string Evaluate(string input)
         {
-            var commandProcessor = new CommandsProcessor(input);
-
-            return commandProcessor.Process();
+            return CommandsProcessor.Process(input);
         }
     }
 }

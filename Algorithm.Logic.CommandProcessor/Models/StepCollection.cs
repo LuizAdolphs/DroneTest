@@ -6,6 +6,19 @@
 
     public class StepCollection
     {
+        private const char _n = 'N';
+        private const char _s = 'S';
+        private const char _l = 'L';
+        private const char _o = 'O';
+
+        private static Dictionary<char, Func<Tuple<int, int>, Step, Tuple<int, int>>> _actions = new Dictionary<char, Func<Tuple<int, int>, Step, Tuple<int, int>>>
+        {
+            { _n, (Tuple<int, int> accumulated, Step step) => new Tuple<int, int>(accumulated.Item1 + step.MinimumTimes, accumulated.Item2) },
+            { _s, (Tuple<int, int> accumulated, Step step) => new Tuple<int, int>(accumulated.Item1 - step.MinimumTimes, accumulated.Item2) },
+            { _l, (Tuple<int, int> accumulated, Step step) => new Tuple<int, int>(accumulated.Item1, accumulated.Item2 + step.MinimumTimes) },
+            { _o, (Tuple<int, int> accumulated, Step step) => new Tuple<int, int>(accumulated.Item1, accumulated.Item2 - step.MinimumTimes) }
+        };
+
         private IList<Step> _steps = new List<Step>();
         public int Index { get; private set; } = 0;
         public string Command { get; }
@@ -60,7 +73,7 @@
         {
             var last = this._steps[this._steps.Count - 1];
 
-            last.Repeat = Convert.ToInt32(String.Concat(this._steps.Last().Repeat, number));
+            last.Times = Convert.ToInt32(String.Concat(this._steps.Last().Times, number));
 
             this._steps.RemoveAt(this._steps.Count - 1);
 
@@ -83,35 +96,7 @@
 
             return this._steps.Aggregate<Step, Tuple<int, int>>(new Tuple<int, int>(0, 0), (accumulated, step) =>
             {
-                int directionQuantity;
-
-                var repeat = step.Repeat == 0 ? 1 : step.Repeat;
-
-                if (step.Command.Equals('N'))
-                {
-                    directionQuantity = accumulated.Item1 + repeat;
-                    return new Tuple<int, int>(directionQuantity, accumulated.Item2);
-                }
-
-                if (step.Command.Equals('S'))
-                {
-                    directionQuantity = accumulated.Item1 - repeat;
-                    return new Tuple<int, int>(directionQuantity, accumulated.Item2);
-                }
-
-                if (step.Command.Equals('L'))
-                {
-                    directionQuantity = accumulated.Item2 + repeat;
-                    return new Tuple<int, int>(accumulated.Item1, directionQuantity);
-                }
-
-                if (step.Command.Equals('O'))
-                {
-                    directionQuantity = accumulated.Item2 - repeat;
-                    return new Tuple<int, int>(accumulated.Item1, directionQuantity);
-                }
-
-                return accumulated;
+                return _actions[step.Command](accumulated, step);
             });
         }
     }
